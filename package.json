@@ -1,0 +1,20 @@
+{
+  "name": "euler",
+  "version": "1.0.0",
+  "description": "Each folder is named based on the question details",
+  "main": "test.js",
+  "scripts": {
+    "build": "node node_modules/typescript/bin/tsc",
+    "watch": "node node_modules/typescript/bin/tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "sinon": "^7.2.2",
+    "typescript": "^3.2.2"
+  }
+}

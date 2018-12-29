@@ -1,0 +1,11 @@
+# Node Dependencies
+/node_modules
+
+# Build files
+release
+
+# Compiled js files and sourcemaps
+src/**/*.js
+src/**/*.js.map
+
+package-lock.json
