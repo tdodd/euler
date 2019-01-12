@@ -1,4 +1,4 @@
-import { Fibonnaci } from "./main";
+import { Fibonacci } from "./main";
 
 import { expect } from "chai";
 
@@ -8,20 +8,20 @@ describe("2: Even Fibbonaci Sum", () => {
     
     it("Regular fibonnaci", () => {
         for (let i = 1; i < terms.length; i++) {
-            expect(Fibonnaci.fibbonaci(i)).to.equal(terms[i]);
+            expect(Fibonacci.fibonacci(i)).to.equal(terms[i]);
         }
     });
     
     it("Even fibbonaci up to 4 million", () => {
         let max = 4000000;
 
-        expect(Fibonnaci.evenFibbonaci(0, max)).to.equal(0);
-        expect(Fibonnaci.evenFibbonaci(1, max)).to.equal(0);
-        expect(Fibonnaci.evenFibbonaci(3, max)).to.equal(2);
-        expect(Fibonnaci.evenFibbonaci(4, max)).to.equal(2);
-        expect(Fibonnaci.evenFibbonaci(6, max)).to.equal(10);
-        expect(Fibonnaci.evenFibbonaci(10, max)).to.equal(44);
-        expect(Fibonnaci.evenFibbonaci(3524577, max)).to.equal(4613732);
+        expect(Fibonacci.evenFibonacci(0, max)).to.equal(0);
+        expect(Fibonacci.evenFibonacci(1, max)).to.equal(0);
+        expect(Fibonacci.evenFibonacci(3, max)).to.equal(2);
+        expect(Fibonacci.evenFibonacci(4, max)).to.equal(2);
+        expect(Fibonacci.evenFibonacci(6, max)).to.equal(10);
+        expect(Fibonacci.evenFibonacci(10, max)).to.equal(44);
+        expect(Fibonacci.evenFibonacci(3524577, max)).to.equal(4613732);
     });
 
 });

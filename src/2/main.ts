@@ -9,18 +9,18 @@
  * By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
  */
 
-export class Fibonnaci {
+export class Fibonacci {
 
-    public static fibbonaci(n: number): number {
+    public static fibonacci(n: number): number {
         if (n <= 0) return 0;
         else if (n === 1)  return 1;
         
         else { // Sum of previous two numbers
-            return this.fibbonaci(n - 1) + this.fibbonaci(n - 2);
+            return this.fibonacci(n - 1) + this.fibonacci(n - 2);
         }
     }
 
-    public static evenFibbonaci(n: number, max: number): number {
+    public static evenFibonacci(n: number, max: number): number {
         let total = 0;
         let prev = 0;
         let current = 1;
