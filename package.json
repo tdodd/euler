@@ -5,7 +5,8 @@
   "main": "test.js",
   "scripts": {
     "build": "node node_modules/typescript/bin/tsc",
-    "watch": "node node_modules/typescript/bin/tsc -w"
+    "watch": "node node_modules/typescript/bin/tsc -w",
+    "test": "node node_modules/mocha/bin/_mocha --timeout 1000 --colors src/**/test.js"
   },
   "author": "",
   "license": "ISC",

@@ -5,20 +5,31 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+			"name": "Run Mocha Tests",
+			"type": "node",
             "request": "launch",
-            "name": "Mocha Tests",
-            "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-            "sourceMaps": true,
+            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "args": [
-                "-u",
-                "tdd",
-                "--timeout",
-                "999999",
-                "--colors",
-                "${workspaceFolder}/src/**/test.js"
+                "--no-timeouts",
+                "src/**/test.js"
             ],
-            "internalConsoleOptions": "openOnSessionStart"
+            "outFiles": [
+                "${workspaceRoot}/src/**/*"
+            ],
+            "stopOnEntry": false,
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeExecutable": null,
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "autoAttachChildProcesses": false,
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "console": "internalConsole",
+            "sourceMaps": true,
+            "protocol":"auto"
         }
     ]
 }
