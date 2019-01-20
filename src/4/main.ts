@@ -14,28 +14,37 @@ export class Palindrome {
             return -1;
         } else {
             // Build an n-digit number, starting with all 9's
-            let a = 99;
-            let b = 99;
+            let upper = this.getUpperLimit(n);
+            let lower = this.getLowerLimit(n);
+            let res = 0;
 
-            for (let i = 2; i < n; i++) {
-                a = parseInt(a.toString().concat("9"));
-                b = parseInt(b.toString().concat("9"));
-            }
-
-            let product = 0;
-
-            while (true) {
-                product = a * b;
-                let str = product.toString();
-                if (str === Palindrome.reverse(str)) {
-                    break;
-                } else {
-                    b--;
+            for (let i = lower; i < upper; i++) {
+                for (let j = lower; j < upper; j++) {
+                    let product = i * j;
+                    if (this.isPalindrome(product) && product > res) {
+                        res = product;
+                    }
                 }
             }
 
-            return product;
+            return res;
         }
+    }
+
+    private static getUpperLimit(n: number): number {
+        let res = 10;
+        for (let i = 2; i <= n; i++) {
+            res = parseInt(res.toString().concat("0"));
+        }
+        return res;
+    }
+
+    private static getLowerLimit(n: number): number {
+        let res = 10;
+        for (let i = 2; i < n; i++) {
+            res = parseInt(res.toString().concat("0"));
+        }
+        return res;
     }
 
     private static reverse(str: string): string {
@@ -44,5 +53,9 @@ export class Palindrome {
             res = res.concat(str[i]);
         }
         return res;
+    }
+
+    private static isPalindrome(num: number): boolean {
+        return num.toString() === this.reverse(num.toString())
     }
 }

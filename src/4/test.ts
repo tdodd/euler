@@ -9,11 +9,7 @@ describe("4: Largest Palindrome Product", () => {
     });
     
     it("Largest palindrome for 3-digit numbers", () => {
-        expect(Palindrome.largestPalindrome(3)).to.equal(90909);
-    });
-    
-    it("Largest palindrome for 4-digit numbers", () => {
-        expect(Palindrome.largestPalindrome(4)).to.equal(99000099);
+        expect(Palindrome.largestPalindrome(3)).to.equal(906609);
     });
 
 });
