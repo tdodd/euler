@@ -1,8 +1,10 @@
 # Project Euler solutions
 
-Each folder is named based on the question details
+Each folder is named based on the question number
 
-* A `test.js` file contains test cases
-* A `main.js` file contains the solution
+* A `test.ts` file contains test cases
+* A `main.ts` file contains the solution
 
-## Build all files in the project with `npm run build` or watch with `npm run watch`
+## 1. Build all files in the project with `npm run build` or watch them with `npm run watch`
+
+## 2. Run unit tests with `npm test`

@@ -2,7 +2,7 @@ import { Squares } from "./main";
 
 import { expect } from "chai";
 
-describe.only("6: Sum of Squares", () => {
+describe("6: Sum of Squares", () => {
     
     it("Sum of squares of the first 10 natural numbers", () => {
         expect(Squares.sumOfSquares(10)).to.equal(385);
