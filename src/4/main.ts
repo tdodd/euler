@@ -13,7 +13,7 @@ export class Palindrome {
         if (n < 2) {
             return -1;
         } else {
-            // Build an n-digit number, starting with all 9's
+            // Build upper and lower limits
             let upper = this.getUpperLimit(n);
             let lower = this.getLowerLimit(n);
             let res = 0;

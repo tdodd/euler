@@ -4,15 +4,9 @@ import { expect } from "chai";
 
 describe("5: Smallest Even Divisor", () => {
     
-    it("Smallest even divisor - 1 to 3", () => {
+    it("Smallest even divisor - 3, 4, and 5", () => {
         expect(SmallestDivisor.getDivisor(3)).to.equal(6);
-    });
-    
-    it("Smallest even divisor - 1 to 4", () => {
         expect(SmallestDivisor.getDivisor(4)).to.equal(12);
-    });
-    
-    it("Smallest even divisor - 1 to 5", () => {
         expect(SmallestDivisor.getDivisor(5)).to.equal(60);
     });
     
