@@ -12,6 +12,10 @@ describe("6: Sum of Squares", () => {
         expect(Squares.squareOfSum(10)).to.equal(3025);
     });
     
+    it("Difference of square and sum of the first 10 natural numbers", () => {
+        expect(Squares.diff(10)).to.equal(2640);
+    });
+    
     it("Difference of square and sum of the first 100 natural numbers", () => {
         expect(Squares.diff(100)).to.equal(25164150);
     });
