@@ -1,0 +1,5 @@
+langauge: node_js
+nodejs:
+  - "stable"
+
+script: npm run travis

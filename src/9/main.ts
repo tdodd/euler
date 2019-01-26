@@ -13,11 +13,7 @@
 export class Triplet {
 
     public static getTriplet(n: number): number {
-        let res = 0;
-        for (let i = 0; i < something; i++) {
-            doStuff();
-        }
-        return res;
+        return n * 0;
     }
     
 }
