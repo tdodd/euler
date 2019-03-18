@@ -1,6 +1,6 @@
-declare namespace ProjectEuler {
+declare namespace euler {
     
-    type TripletResult  = {
+    type Triplet  = {
         product: number;
         array: number[];
     }    

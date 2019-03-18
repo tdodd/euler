@@ -12,7 +12,7 @@
 
 export class Triplet {
 
-    public static getTriplet(n: number): TripletResult {
+    public static getTriplet(n: number): euler.Triplet {
         let p = 0;
         let a: number[] = [];
         let flag = false;
