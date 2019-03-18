@@ -8,7 +8,8 @@
     "watch": "node node_modules/typescript/bin/tsc -w",
     "test": "node node_modules/mocha/bin/_mocha --timeout 1000 --colors src/**/test.js",
     "lint": "node node_modules/tslint/bin/tslint -c tslint.json 'src/**/*.ts'",
-    "travis": "travis.sh"
+    "travis": "travis.sh",
+    "coverage": "node node_modules/nyc/bin/nyc.js node_modules/mocha/bin/_mocha --timeout=1000 --colors src/**/test.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "@types/mocha": "^5.2.5",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
+    "nyc": "^13.3.0",
     "sinon": "^7.2.2",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2"
