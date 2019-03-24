@@ -8,7 +8,7 @@ describe("4: Largest Palindrome Product", () => {
         expect(Palindrome.largestPalindrome(2)).to.equal(9009);
     });
     
-    it.skip("Largest palindrome for 3-digit numbers", () => {
+    it("Largest palindrome for 3-digit numbers", () => {
         expect(Palindrome.largestPalindrome(3)).to.equal(906609);
     });
 

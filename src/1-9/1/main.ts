@@ -7,8 +7,7 @@
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
 
-
-export class MultiplesOf3and5 {
+export class Multiples {
 
     public static findSum(multiples: number[], num: number): number {
         let sum = 0;

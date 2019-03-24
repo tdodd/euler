@@ -2,7 +2,7 @@ import { GridProduct } from "./main";
 
 import { expect } from "chai";
 
-describe("11: Largest adjacent product", () => {
+describe.skip("11: Largest adjacent product", () => {
 
     it("Get the largest product of a small grid", () => {
         let smallGrid = [

@@ -10,25 +10,21 @@
 export class Palindrome {
 
     public static largestPalindrome(n: number): number {
-        if (n < 2) {
-            return -1;
-        } else {
-            // Build upper and lower limits
-            let upper = this.getUpperLimit(n);
-            let lower = this.getLowerLimit(n);
-            let res = 0;
+        // Build upper and lower limits
+        let upper = this.getUpperLimit(n);
+        let lower = this.getLowerLimit(n);
+        let res = 0;
 
-            for (let i = lower; i < upper; i++) {
-                for (let j = lower; j < upper; j++) {
-                    let product = i * j;
-                    if (this.isPalindrome(product) && product > res) {
-                        res = product;
-                    }
+        for (let i = lower; i < upper; i++) {
+            for (let j = lower; j < upper; j++) {
+                let product = i * j;
+                if (this.isPalindrome(product) && product > res) {
+                    res = product;
                 }
             }
-
-            return res;
         }
+
+        return res;
     }
 
     private static getUpperLimit(n: number): number {

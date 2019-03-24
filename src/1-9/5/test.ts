@@ -14,7 +14,7 @@ describe("5: Smallest Even Divisor", () => {
         expect(SmallestDivisor.getDivisor(10)).to.equal(2520);
     });
     
-    it.skip("Smallest even divisor - 20", () => {
+    it("Smallest even divisor - 20", () => {
         expect(SmallestDivisor.getDivisor(20)).to.equal(232792560);
     });
 

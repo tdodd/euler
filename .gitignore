@@ -11,4 +11,5 @@ src/**/*.js.map
 package-lock.json
 
 # Code coverage
-.nyc_output
+code_coverage
+

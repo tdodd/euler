@@ -14,7 +14,6 @@ describe("2: Even Fibbonaci Sum", () => {
     
     it("Even fibbonaci up to 4 million", () => {
         let max = 4000000;
-
         expect(Fibonacci.evenFibonacci(0, max)).to.equal(0);
         expect(Fibonacci.evenFibonacci(1, max)).to.equal(0);
         expect(Fibonacci.evenFibonacci(3, max)).to.equal(2);
