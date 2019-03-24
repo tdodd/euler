@@ -17,6 +17,13 @@
  * What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
  */
 
+enum DIRECTIONS {
+    RIGHT = 1,
+    LEFT = -1,
+    UP = 1,
+    DOWN = -1,
+}
+
 export class GridProduct {
 
     public static GRID: number[][] = [
@@ -48,7 +55,7 @@ export class GridProduct {
         for (let row = 0; row < n; row++) {
             for (let col = 0; col < n; col++) {
                 // Calculate products in each direction
-                let right = this.product([grid[row][col], grid[row][col+1], grid[row][col+2]]);
+                let right = this.product(grid, 0, DIRECTIONS.RIGHT, length);
                 let down = this.product([grid[row][col], grid[row+1][col], grid[row+2][col]]);
                 let left = this.product([grid[row][col], grid[row][col-1], grid[row][col-2]]);
                 let up = this.product([grid[row][col], grid[row-1][col], grid[row-2][col]]);
@@ -60,14 +67,19 @@ export class GridProduct {
         return product;
     }
 
-    private static checkIndices(arr) {
+    private static checkIndex(grid: tbd, index: number) {
+        // Ensure this index will not cause the product calculation to go out of bounds
+        let unit = grid[index];
 
+        if (unit) {
+            console.log("");
+            
+        }
     }
 
-    private static product(cells: number[]): number {
+    private static product(grid: number[][], row, col, length): number {
         // Check for out of bounds indices
-        let outOfBounds = cells.some(cell => cell === undefined);
-        if (outOfBounds) return 0;
+        this.checkIndex(grid, );
 
         // Get product of cells
         return cells.reduce((total, current) => total * current);

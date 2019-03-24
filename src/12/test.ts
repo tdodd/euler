@@ -2,14 +2,14 @@ import { TriangleDivisor } from "./main";
 
 import { expect } from "chai";
 
-describe("12: Triangle Divisor", () => {
+describe("12: Triangle Numbers", () => {
 
-    it("Triangle number with more than 5 divisors", () => {
+    it("First triangle number with more than 5 divisors", () => {
         expect(TriangleDivisor.getDivisors(5)).to.equal(28);
     });
     
-    it.skip("Triangle number with more than 500 divisors", () => {
-        expect(TriangleDivisor.getDivisors(500)).to.equal(-1);
+    it("First triangle number with more than 50 divisors", () => {
+        expect(TriangleDivisor.getDivisors(50)).to.equal(25200);
     });
 
 });

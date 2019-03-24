@@ -6,10 +6,10 @@
   "scripts": {
     "build": "node node_modules/typescript/bin/tsc",
     "watch": "node node_modules/typescript/bin/tsc -w",
-    "test": "node node_modules/mocha/bin/_mocha --timeout 1000 --colors src/**/test.js",
+    "test": "node node_modules/mocha/bin/_mocha --timeout 5000 --colors src/**/test.js",
     "lint": "node node_modules/tslint/bin/tslint -c tslint.json 'src/**/*.ts'",
     "travis": "travis.sh",
-    "coverage": "node node_modules/nyc/bin/nyc.js node_modules/mocha/bin/_mocha --timeout=1000 --colors src/**/test.js"
+    "coverage": "node node_modules/nyc/bin/nyc.js node_modules/mocha/bin/_mocha --timeout=5000 --colors src/**/test.js"
   },
   "author": "",
   "license": "ISC",
