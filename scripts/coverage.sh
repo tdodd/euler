@@ -10,6 +10,8 @@ TEST_TIMEOUT=5000
 REPORT_DIR="code_coverage/report"
 TEMP_DIR="code_coverage/json"
 
+echo "Running unit test coverage.."
+
 # Istanbul command + options
 node node_modules/nyc/bin/nyc \
     --report-dir ${REPORT_DIR} \
