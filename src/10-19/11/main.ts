@@ -17,12 +17,12 @@
  * What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
  */
 
-enum DIRECTIONS {
-    RIGHT = 1,
-    LEFT = -1,
-    UP = 1,
-    DOWN = -1,
-}
+// enum DIRECTIONS {
+//     RIGHT = 1,
+//     LEFT = -1,
+//     UP = 1,
+//     DOWN = -1,
+// }
 
 export class GridProduct {
 
@@ -49,40 +49,41 @@ export class GridProduct {
         [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48],
     ];
 
-    public static getProduct(grid: number[][], length: number): number {
-        let product = 0;
-        let n = grid.length;
-        for (let row = 0; row < n; row++) {
-            for (let col = 0; col < n; col++) {
-                // Calculate products in each direction
-                let right = this.product(grid, 0, DIRECTIONS.RIGHT, length);
-                let down = this.product([grid[row][col], grid[row+1][col], grid[row+2][col]]);
-                let left = this.product([grid[row][col], grid[row][col-1], grid[row][col-2]]);
-                let up = this.product([grid[row][col], grid[row-1][col], grid[row-2][col]]);
+    public static getProduct(): number {
+        // let product = 0;
+        // let n = grid.length;
+        // for (let row = 0; row < n; row++) {
+        //     for (let col = 0; col < n; col++) {
+        //         // Calculate products in each direction
+        //         let right = this.product(grid, 0, DIRECTIONS.RIGHT, length);
+        //         let down = this.product([grid[row][col], grid[row+1][col], grid[row+2][col]]);
+        //         let left = this.product([grid[row][col], grid[row][col-1], grid[row][col-2]]);
+        //         let up = this.product([grid[row][col], grid[row-1][col], grid[row-2][col]]);
                 
-                // let diagonal = this.product([grid[row][col], grid[row + 1][col], grid[row + 2][col]]);
-                // product = Math.max(product, l, r, up, down, diagonal);
-            }
-        }
-        return product;
+        //         // let diagonal = this.product([grid[row][col], grid[row + 1][col], grid[row + 2][col]]);
+        //         // product = Math.max(product, l, r, up, down, diagonal);
+        //     }
+        // }
+        this.product();
+        return 0;
     }
 
-    private static checkIndex(grid: tbd, index: number) {
-        // Ensure this index will not cause the product calculation to go out of bounds
-        let unit = grid[index];
+    private static checkIndex(): void {
+        // // Ensure this index will not cause the product calculation to go out of bounds
+        // let unit = grid[index];
 
-        if (unit) {
-            console.log("");
+        // if (unit) {
+        //     console.log("");
             
-        }
+        // }
     }
 
-    private static product(grid: number[][], row, col, length): number {
-        // Check for out of bounds indices
-        this.checkIndex(grid, );
+    private static product(): void {
+        // // Check for out of bounds indices
+        this.checkIndex();
 
-        // Get product of cells
-        return cells.reduce((total, current) => total * current);
+        // // Get product of cells
+        // return cells.reduce((total, current) => total * current);
     }
 
 }
