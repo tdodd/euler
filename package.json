@@ -1,7 +1,7 @@
 {
   "name": "euler",
   "version": "1.0.0",
-  "description": "Each folder is named based on the question details",
+  "description": "Project Euler solutions in typescript",
   "main": "test.js",
   "scripts": {
     "build": "node node_modules/.bin/tsc",

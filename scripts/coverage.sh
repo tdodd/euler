@@ -16,4 +16,4 @@ echo "Running unit test coverage.."
 node node_modules/nyc/bin/nyc \
     --report-dir ${REPORT_DIR} \
     --temp-directory ${TEMP_DIR} \
-    node_modules/mocha/bin/_mocha --timeout ${TEST_TIMEOUT} ${TEST_FILES}
+    node_modules/mocha/bin/_mocha --timeout ${TEST_TIMEOUT} --forbid-only ${TEST_FILES}

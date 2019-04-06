@@ -18,10 +18,34 @@
  * NOTE: Once the chain starts the terms are allowed to go above one million.
  */
 
-export class Sequence {
+export class CollatzSequence {
 
-    public static solve(): void {
-        
+    public static longest(n: number): number {
+        let res = n, ctr = n;
+        let longestChain = this.getChainLength(n);
+        while (ctr > 2) {
+            let length = this.getChainLength(--ctr);
+            if (length > longestChain) {
+                res = ctr;
+                longestChain = length;
+            }
+        }
+        return res;
+    }
+
+    private static getChainLength(n: number): number {
+        let length = 1;
+
+        while (n !== 1) {
+            if (n % 2 === 0) {
+                n /= 2; // Even number
+            } else {
+                n = (3 * n) + 1; // Odd number
+            }
+            length++;
+        }
+
+        return length;
     }
 
 }
