@@ -4,10 +4,10 @@
   "description": "Each folder is named based on the question details",
   "main": "test.js",
   "scripts": {
-    "build": "node node_modules/typescript/bin/tsc",
-    "watch": "node node_modules/typescript/bin/tsc -w",
-    "test": "node node_modules/mocha/bin/_mocha --timeout 5000 --forbid-only --colors src/**/test.js",
-    "lint": "node node_modules/tslint/bin/tslint -c tslint.json 'src/**/*.ts'",
+    "build": "node node_modules/.bin/tsc",
+    "watch": "node node_modules/.bin/tsc -w",
+    "test": "node node_modules/.bin/_mocha --timeout 5000 --forbid-only --colors src/**/test.js",
+    "lint": "node node_modules/.bin/tslint -c tslint.json 'src/**/*.ts'",
     "travis": "./scripts/travis.sh",
     "coverage": "./scripts/coverage.sh"
   },
