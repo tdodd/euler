@@ -6,12 +6,12 @@
   "scripts": {
     "build": "node node_modules/typescript/bin/tsc",
     "watch": "node node_modules/typescript/bin/tsc -w",
-    "test": "node node_modules/mocha/bin/_mocha --timeout 5000 --colors src/**/test.js",
+    "test": "node node_modules/mocha/bin/_mocha --timeout 5000 --forbid-only --colors src/**/test.js",
     "lint": "node node_modules/tslint/bin/tslint -c tslint.json 'src/**/*.ts'",
     "travis": "./scripts/travis.sh",
     "coverage": "./scripts/coverage.sh"
   },
-  "author": "",
+  "author": "Thomas Dodd",
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.1.7",
