@@ -1,7 +1,8 @@
 /**
  * https://projecteuler.net/problem=11
  * 
- * In the nxn (reduced to fit) grid below, four numbers along a diagonal line have been marked in red (represented here with square brackets).
+ * In the nxn (reduced to fit) grid below, four numbers along a diagonal line have been marked in red
+ * (represented here with square brackets).
  * 
  * 8 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 8
  * 24 47 32 60 99 03 45 02 44 75 33 53 78 36 84 20 35 17 12 50
@@ -14,15 +15,10 @@
  * 86 56 00 48 35 71 89 07 05 44 44 37 44 60 21 58 51 54 17 58
  * 
  * The product of these numbers is 26 × 63 × 78 × 14 = 1,788,696.
- * What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
+ * 
+ * What is the greatest product of four adjacent numbers in the same direction
+ * (up, down, left, right, or diagonally) in the 20×20 grid?
  */
-
-// enum DIRECTIONS {
-//     RIGHT = 1,
-//     LEFT = -1,
-//     UP = 1,
-//     DOWN = -1,
-// }
 
 export class GridProduct {
 
@@ -49,41 +45,81 @@ export class GridProduct {
         [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48],
     ];
 
-    public static getProduct(): number {
-        // let product = 0;
-        // let n = grid.length;
-        // for (let row = 0; row < n; row++) {
-        //     for (let col = 0; col < n; col++) {
-        //         // Calculate products in each direction
-        //         let right = this.product(grid, 0, DIRECTIONS.RIGHT, length);
-        //         let down = this.product([grid[row][col], grid[row+1][col], grid[row+2][col]]);
-        //         let left = this.product([grid[row][col], grid[row][col-1], grid[row][col-2]]);
-        //         let up = this.product([grid[row][col], grid[row-1][col], grid[row-2][col]]);
+    public static getProduct(grid: number[][], length: number): number {
+        let product = 0;
+        let n = grid.length;
+        for (let row = 0; row < n; row++) {
+            for (let col = 0; col < n; col++) {
+                // Calculate products in each direction
+                let right = this.product(this.getRightTerms(grid[row], col, length));
+                let left = this.product(this.getLeftTerms(grid[row], col, length));
+                let up = this.product(this.getUpTerms(grid, row, col, length));
+                let down = this.product(this.getDownTerms(grid, row, col, length));
                 
-        //         // let diagonal = this.product([grid[row][col], grid[row + 1][col], grid[row + 2][col]]);
-        //         // product = Math.max(product, l, r, up, down, diagonal);
-        //     }
-        // }
-        this.product();
+                // let diagonal = this.product([grid[row][col], grid[row + 1][col], grid[row + 2][col]]);
+                product = Math.max(product, right, left, up, down);
+            }
+        }
+        return product;
+    }
+
+    private static product(terms: number[]): number {
+        if (terms.length > 0) {
+            return terms.reduce((total, current) => total * current);
+        }
         return 0;
     }
 
-    private static checkIndex(): void {
-        // // Ensure this index will not cause the product calculation to go out of bounds
-        // let unit = grid[index];
-
-        // if (unit) {
-        //     console.log("");
-            
-        // }
+    private static getRightTerms(grid, col, length): number[] {
+        let idx = (col + length) - 1;
+        let isOutOfBounds = !grid[idx];
+        if (!isOutOfBounds) {
+            let terms = [];
+            for (let i = col; i < col + length; i++) {
+                terms.push(grid[i])
+            }
+            return terms;
+        }
+        return [];
     }
-
-    private static product(): void {
-        // // Check for out of bounds indices
-        this.checkIndex();
-
-        // // Get product of cells
-        // return cells.reduce((total, current) => total * current);
+    
+    private static getLeftTerms(grid, col, length): number[] {
+        let idx = col - length;
+        let isOutOfBounds = !grid[idx];
+        if (!isOutOfBounds) {
+            let terms = [];
+            for (let i = 0; i < length; i++) {
+                terms.push(grid[i])
+            }
+            return terms;
+        }
+        return [];
+    }
+    
+    private static getDownTerms(grid, row, col, length): number[] {
+        let idx = (row + length) - 1;
+        let isOutOfBounds = !grid[idx];
+        if (!isOutOfBounds) {
+            let terms = [];
+            for (let i = row; i <= idx; i++) {
+                terms.push(grid[i][col])
+            }
+            return terms;
+        }
+        return [];
+    }
+    
+    private static getUpTerms(grid, row, col, length): number[] {
+        let idx = (row - length) + 1;
+        let isOutOfBounds = !grid[idx];
+        if (!isOutOfBounds) {
+            let terms = [];
+            for (let i = row; i >= idx; i--) {
+                terms.push(grid[i][col])
+            }
+            return terms;
+        }
+        return [];
     }
 
 }
