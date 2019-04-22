@@ -2,6 +2,7 @@
   "name": "euler",
   "version": "1.0.0",
   "description": "Project Euler solutions in typescript",
+  "repository": "https://github.com/tdodd/euler",
   "main": "test.js",
   "scripts": {
     "build": "node node_modules/.bin/tsc",
