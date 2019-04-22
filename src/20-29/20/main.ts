@@ -32,10 +32,3 @@ export class Factorial {
     }
 
 }
-
-
-
-
-
-
-
