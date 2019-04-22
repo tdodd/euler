@@ -1,4 +1,8 @@
 langauge: node_js
+
+node_js:
+  - "10"
+
 nodejs:
   - "stable"
 
@@ -6,6 +10,7 @@ before_script:
   - npm install
 
 script:
+  - node -v
   - npm run lint
   - npm run build
   - npm run coverage
