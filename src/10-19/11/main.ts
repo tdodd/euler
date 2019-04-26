@@ -57,7 +57,7 @@ export class GridProduct {
                     let currentProduct = this.product(grid[row], col, 1, size);
                     product = Math.max(currentProduct, product);
                 }
-                if ((col + 1 - size) >= 0) { // Left
+                if ((col - size) >= -1) { // Left
                     let currentProduct = this.product(grid[row], col, -1, size);
                     product = Math.max(currentProduct, product);
                 }
@@ -65,7 +65,7 @@ export class GridProduct {
                     let currentProduct = this.product(grid.map(r => r[col]), row, 1, size);
                     product = Math.max(currentProduct, product);
                 }
-                if ((row + 1 - size) >= 0) { // Up
+                if ((row - size) >= -1) { // Up
                     let currentProduct = this.product(grid.map(r => r[col]), row, -1, size);
                     product = Math.max(currentProduct, product);
                 }
