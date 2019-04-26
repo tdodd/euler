@@ -45,81 +45,42 @@ export class GridProduct {
         [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48],
     ];
 
-    public static getProduct(grid: number[][], length: number): number {
+    public static getProduct(grid: number[][], size: number): number {
         let product = 0;
-        let n = grid.length;
-        for (let row = 0; row < n; row++) {
-            for (let col = 0; col < n; col++) {
+        let width = grid[0].length;
+        let height = grid.length;
+
+        for (let row = 0; row < width; row++) {
+            for (let col = 0; col < height; col++) {
                 // Calculate products in each direction
-                let right = this.product(this.getRightTerms(grid[row], col, length));
-                let left = this.product(this.getLeftTerms(grid[row], col, length));
-                let up = this.product(this.getUpTerms(grid, row, col, length));
-                let down = this.product(this.getDownTerms(grid, row, col, length));
-                
-                // let diagonal = this.product([grid[row][col], grid[row + 1][col], grid[row + 2][col]]);
-                product = Math.max(product, right, left, up, down);
+                if ((col + size) <= width) { // Right
+                    let currentProduct = this.product(grid[row], col, 1, size);
+                    product = Math.max(currentProduct, product);
+                }
+                if ((col + 1 - size) >= 0) { // Left
+                    let currentProduct = this.product(grid[row], col, -1, size);
+                    product = Math.max(currentProduct, product);
+                }
+                if ((row + size) <= height) { // Down
+                    let currentProduct = this.product(grid.map(r => r[col]), row, 1, size);
+                    product = Math.max(currentProduct, product);
+                }
+                if ((row + 1 - size) >= 0) { // Up
+                    let currentProduct = this.product(grid.map(r => r[col]), row, -1, size);
+                    product = Math.max(currentProduct, product);
+                }
             }
         }
         return product;
     }
 
-    private static product(terms: number[]): number {
-        if (terms.length > 0) {
-            return terms.reduce((total, current) => total * current);
+    private static product(grid: number[], start: number, increment: number, size: number): number {
+        let res = grid[start];
+        for (let i = 1; i < size; i++) {
+            let cell = grid[start + (increment * i)];
+            res *= cell;
         }
-        return 0;
-    }
-
-    private static getRightTerms(grid, col, length): number[] {
-        let idx = (col + length) - 1;
-        let isOutOfBounds = !grid[idx];
-        if (!isOutOfBounds) {
-            let terms = [];
-            for (let i = col; i < col + length; i++) {
-                terms.push(grid[i])
-            }
-            return terms;
-        }
-        return [];
-    }
-    
-    private static getLeftTerms(grid, col, length): number[] {
-        let idx = col - length;
-        let isOutOfBounds = !grid[idx];
-        if (!isOutOfBounds) {
-            let terms = [];
-            for (let i = 0; i < length; i++) {
-                terms.push(grid[i])
-            }
-            return terms;
-        }
-        return [];
-    }
-    
-    private static getDownTerms(grid, row, col, length): number[] {
-        let idx = (row + length) - 1;
-        let isOutOfBounds = !grid[idx];
-        if (!isOutOfBounds) {
-            let terms = [];
-            for (let i = row; i <= idx; i++) {
-                terms.push(grid[i][col])
-            }
-            return terms;
-        }
-        return [];
-    }
-    
-    private static getUpTerms(grid, row, col, length): number[] {
-        let idx = (row - length) + 1;
-        let isOutOfBounds = !grid[idx];
-        if (!isOutOfBounds) {
-            let terms = [];
-            for (let i = row; i >= idx; i--) {
-                terms.push(grid[i][col])
-            }
-            return terms;
-        }
-        return [];
+        return res;
     }
 
 }
