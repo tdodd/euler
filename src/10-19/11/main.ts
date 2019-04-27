@@ -1,7 +1,8 @@
 /**
  * https://projecteuler.net/problem=11
  * 
- * In the nxn (reduced to fit) grid below, four numbers along a diagonal line have been marked in red (represented here with square brackets).
+ * In the nxn (reduced to fit) grid below, four numbers along a diagonal line have been marked in red
+ * (represented here with square brackets).
  * 
  * 8 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 8
  * 24 47 32 60 99 03 45 02 44 75 33 53 78 36 84 20 35 17 12 50
@@ -14,15 +15,10 @@
  * 86 56 00 48 35 71 89 07 05 44 44 37 44 60 21 58 51 54 17 58
  * 
  * The product of these numbers is 26 × 63 × 78 × 14 = 1,788,696.
- * What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
+ * 
+ * What is the greatest product of four adjacent numbers in the same direction
+ * (up, down, left, right, or diagonally) in the 20×20 grid?
  */
-
-// enum DIRECTIONS {
-//     RIGHT = 1,
-//     LEFT = -1,
-//     UP = 1,
-//     DOWN = -1,
-// }
 
 export class GridProduct {
 
@@ -49,41 +45,42 @@ export class GridProduct {
         [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48],
     ];
 
-    public static getProduct(): number {
-        // let product = 0;
-        // let n = grid.length;
-        // for (let row = 0; row < n; row++) {
-        //     for (let col = 0; col < n; col++) {
-        //         // Calculate products in each direction
-        //         let right = this.product(grid, 0, DIRECTIONS.RIGHT, length);
-        //         let down = this.product([grid[row][col], grid[row+1][col], grid[row+2][col]]);
-        //         let left = this.product([grid[row][col], grid[row][col-1], grid[row][col-2]]);
-        //         let up = this.product([grid[row][col], grid[row-1][col], grid[row-2][col]]);
-                
-        //         // let diagonal = this.product([grid[row][col], grid[row + 1][col], grid[row + 2][col]]);
-        //         // product = Math.max(product, l, r, up, down, diagonal);
-        //     }
-        // }
-        this.product();
-        return 0;
+    public static getProduct(grid: number[][], size: number): number {
+        let product = 0;
+        let width = grid[0].length;
+        let height = grid.length;
+
+        // Calculate products in each direction
+        // Only update the result if the new product is larger than the current max
+        for (let row = 0; row < width; row++) {
+            for (let col = 0; col < height; col++) {
+                if ((col + size) <= width) { // Left-Right
+                    product = Math.max(this.product(grid, row, col, 0, 1, size), product);
+                }
+                if ((row + size) <= height) { // Up-Down
+                    product = Math.max(this.product(grid, row, col, 1, 0, size), product);
+                }
+                if ((col + size) <= width && (row - size) >= -1) { // Diagonal-Left-to-Right
+                    product = Math.max(this.product(grid, row, col, -1, 1, size), product);
+                }
+                if ((col - size) >= -1 && (row - size) >= -1) { // Diagonal-Right-to-Left
+                    product = Math.max(this.product(grid, row, col, -1, -1, size), product);
+                }
+            }
+        }
+
+        return product;
     }
 
-    private static checkIndex(): void {
-        // // Ensure this index will not cause the product calculation to go out of bounds
-        // let unit = grid[index];
-
-        // if (unit) {
-        //     console.log("");
-            
-        // }
-    }
-
-    private static product(): void {
-        // // Check for out of bounds indices
-        this.checkIndex();
-
-        // // Get product of cells
-        // return cells.reduce((total, current) => total * current);
+    private static product(grid: number[][], x0: number, y0: number, dx: number, dy: number, size: number): number {
+        let res = grid[x0][y0];
+        for (let i = 1; i < size; i++) {
+            let xc = x0 + (dx * i);
+            let yc = y0 + (dy * i);
+            let cell = grid[xc][yc];
+            res *= cell;
+        }
+        return res;
     }
 
 }
