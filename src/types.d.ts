@@ -5,9 +5,4 @@ declare namespace euler {
         array: number[];
     };
 
-    type Triangle = {
-        list: number[];
-        sum: number;
-    };
-
 }
