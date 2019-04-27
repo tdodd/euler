@@ -14,7 +14,7 @@ describe("11: Largest adjacent product", () => {
         expect(GridProduct.getProduct(smallGrid, 3)).to.equal(68 * 69 * 70);
     });
     
-    it.only("Get the largest product of a 20x20 grid", () => {
+    it("Get the largest product of a 20x20 grid", () => {
         expect(GridProduct.getProduct(GridProduct.GRID, 4)).to.equal(70600674);
     });
 

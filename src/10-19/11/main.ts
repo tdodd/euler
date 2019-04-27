@@ -54,17 +54,17 @@ export class GridProduct {
         // Only update the result if the new product is larger than the current max
         for (let row = 0; row < width; row++) {
             for (let col = 0; col < height; col++) {
-                if ((col + size) <= width) { // Right
+                if ((col + size) <= width) { // Left-Right
                     product = Math.max(this.product(grid, row, col, 0, 1, size), product);
                 }
-                if ((col - size) >= -1) { // Left
-                    product = Math.max(this.product(grid, row, col, 0, -1, size), product);
-                }
-                if ((row + size) <= height) { // Down
+                if ((row + size) <= height) { // Up-Down
                     product = Math.max(this.product(grid, row, col, 1, 0, size), product);
                 }
-                if ((row - size) >= -1) { // Up
-                    product = Math.max(this.product(grid, row, col, -1, 0, size), product);
+                if ((col + size) <= width && (row - size) >= -1) { // Diagonal-Left-to-Right
+                    product = Math.max(this.product(grid, row, col, -1, 1, size), product);
+                }
+                if ((col - size) >= -1 && (row - size) >= -1) { // Diagonal-Right-to-Left
+                    product = Math.max(this.product(grid, row, col, -1, -1, size), product);
                 }
             }
         }
