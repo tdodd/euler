@@ -50,34 +50,34 @@ export class GridProduct {
         let width = grid[0].length;
         let height = grid.length;
 
+        // Calculate products in each direction
+        // Only update the result if the new product is larger than the current max
         for (let row = 0; row < width; row++) {
             for (let col = 0; col < height; col++) {
-                // Calculate products in each direction
                 if ((col + size) <= width) { // Right
-                    let currentProduct = this.product(grid[row], col, 1, size);
-                    product = Math.max(currentProduct, product);
+                    product = Math.max(this.product(grid, row, col, 0, 1, size), product);
                 }
                 if ((col - size) >= -1) { // Left
-                    let currentProduct = this.product(grid[row], col, -1, size);
-                    product = Math.max(currentProduct, product);
+                    product = Math.max(this.product(grid, row, col, 0, -1, size), product);
                 }
                 if ((row + size) <= height) { // Down
-                    let currentProduct = this.product(grid.map(r => r[col]), row, 1, size);
-                    product = Math.max(currentProduct, product);
+                    product = Math.max(this.product(grid, row, col, 1, 0, size), product);
                 }
                 if ((row - size) >= -1) { // Up
-                    let currentProduct = this.product(grid.map(r => r[col]), row, -1, size);
-                    product = Math.max(currentProduct, product);
+                    product = Math.max(this.product(grid, row, col, -1, 0, size), product);
                 }
             }
         }
+
         return product;
     }
 
-    private static product(grid: number[], start: number, increment: number, size: number): number {
-        let res = grid[start];
+    private static product(grid: number[][], x0: number, y0: number, dx: number, dy: number, size: number): number {
+        let res = grid[x0][y0];
         for (let i = 1; i < size; i++) {
-            let cell = grid[start + (increment * i)];
+            let xc = x0 + (dx * i);
+            let yc = y0 + (dy * i);
+            let cell = grid[xc][yc];
             res *= cell;
         }
         return res;
