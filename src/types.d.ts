@@ -1,8 +1,8 @@
 declare namespace euler {
     
-    type Triplet  = {
+    type Triplet = {
         product: number;
         array: number[];
-    }    
+    };
 
 }
