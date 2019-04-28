@@ -13,8 +13,29 @@
 
 export class AmicableNumbers {
     
-    public static evaluate(n: number): number {
-        return n;
+    public static amicableSum(n: number): number {
+        let sum = 0;
+        let d = new Array(n); // Initialize an empty array of size n
+
+        for (let i = 1; i < n; i++) {
+            let dn = this.getDivisorSum(i);
+            d[i] = dn; // Assign d(a) as index b in the array
+            if (d[dn] === i && dn !== i) {
+                sum += dn + i;
+            }
+        }
+
+        return sum;
+    }
+
+    private static getDivisorSum(n: number): number {
+        let sum = 0;
+        for (let i = 1; i < n; i++) {
+            if (n % i === 0) {
+                sum += i;
+            }
+        }
+        return sum;
     }
 
 }
