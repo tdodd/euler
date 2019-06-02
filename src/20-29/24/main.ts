@@ -13,33 +13,48 @@
  */
 
 export class Permutation {
+
+    // For example, given the sequence [1, 2, 3, 4] (which is in increasing order):
+    // Index l = 3, because 4 is the only value in the sequence that is greater than 3 in order to satisfy the condition a[k] < a[l].
+    // Index k = 2, because 3 is placed at an index that satisfies condition of being the largest index that is still less than a[k + 1] which is 4.
+    // The values of a[2] and a[3] are swapped to form the new sequence [1,2,4,3].
     
-    public static getNthPermutation<T>(pos: number, arr: T[]): T {
-        let permutations: T[] = [];
-        let len = arr.length;
-        
+    // The sequence after k-index a[2] to the final element is reversed.
+    // Because only one value lies after this index (the 3), the sequence remains unchanged in this instance.
+    // Thus the lexicographic successor of the initial state is permuted: [1,2,4,3].
+    
+    public static getNthPermutation(pos: number, arr: string[]): string[] {
         // Sort the array and use the first object
-        arr = arr.sort();
-
-        let elem = arr.join("");
-        permutations.push(elem);
-
+        let nthPermutation = arr.sort();
+        
         for (let i = 1; i <= pos; i++) {
-            let p = this.getNextPermutation();
-            permutations.push(p);
-        }
+            // Find the largest index k such that a[k] < a[k + 1]
+            // If no such index exists, the permutation is the last permutation.
+            let k = -1;
+            for (let x = 0; x < arr.length - 1; x++) {
+                if (nthPermutation[x] < nthPermutation[x + 1]) {
+                    k = x;
+                }
+            }
+            
+            // Find the largest index l greater than k such that a[k] < a[l].
+            let l = -1;
+            for (let y = k + 1; y <= arr.length; y++) {
+                if (nthPermutation[k] < nthPermutation[y]) {
+                    l = y;
+                }
+            }
 
-        return permutations[pos];
+        // Swap the value of a[k] with that of a[l].
+        this.swap(nthPermutation, k, l);
+
+        // Reverse the sequence from a[k + 1] up to and including the final element a[n].
+        let end = nthPermutation.splice(k + 1).reverse();
+        nthPermutation = nthPermutation.concat(end);
     }
 
-    // Steps to generate the next higher permutation:
-    //      1.  Take the previously printed permutation and find the rightmost character in it, which is smaller than its next character.
-    //          Let us call this character as ‘first character’.
-    //      2.  Now find the ceiling of the ‘first character’.
-    //          Ceiling is the smallest character on right of ‘first character’, which is greater than ‘first character’.
-    //          Let us call the ceil character as ‘second character’.
-    // 3. Swap the two characters found in above 2 steps.
-    // 4. Sort the substring (in non-decreasing order) after the original index of ‘first character’.
+        return nthPermutation;
+    }
 
     // Let us consider the string “ABCDEF”. Let previously printed permutation be “DCFEBA”.
     // The next permutation in sorted order should be “DEABCF”.
@@ -47,14 +62,10 @@ export class Permutation {
     // The ‘first character’ will be ‘C’. The ‘second character’ will be ‘E’. After swapping these two, we get “DEFCBA”.
     // The final step is to sort the substring after the character original index of ‘first character’.
     // Finally, we get “DEABCF”.
-    private static getNextPermutation(n: number) {
-        let factorial = 1;
-
-        for (let i = n; i > 1; i--) {
-            factorial *= i;
-        }
-
-        return factorial
+    public static swap(arr: string[], x: number, y: number): void {
+        let temp = arr[x];
+        arr[x] = arr[y];
+        arr[y] = temp;
     }
 
 }
