@@ -13,22 +13,6 @@
  */
 
 export class Permutation {
-
-    // Let us consider the string “ABCDEF”. Let previously printed permutation be “DCFEBA”.
-    // The next permutation in sorted order should be “DEABCF”.
-    // Let us understand above steps to find next permutation.
-    // The ‘first character’ will be ‘C’. The ‘second character’ will be ‘E’. After swapping these two, we get “DEFCBA”.
-    // The final step is to sort the substring after the character original index of ‘first character’.
-    // Finally, we get “DEABCF”.
-
-    // For example, given the sequence [1, 2, 3, 4] (which is in increasing order):
-    // Index l = 3, because 4 is the only value in the sequence that is greater than 3 in order to satisfy the condition a[k] < a[l].
-    // Index k = 2, because 3 is placed at an index that satisfies condition of being the largest index that is still less than a[k + 1] which is 4.
-    // The values of a[2] and a[3] are swapped to form the new sequence [1,2,4,3].
-    
-    // The sequence after k-index a[2] to the final element is reversed.
-    // Because only one value lies after this index (the 3), the sequence remains unchanged in this instance.
-    // Thus the lexicographic successor of the initial state is permuted: [1,2,4,3].
     
     public static getNthPermutation<T>(pos: number, arr: T[]): T[] {
         // Since we're looking for the nth permutation, get the next permutation n times
