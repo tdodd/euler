@@ -14,6 +14,13 @@
 
 export class Permutation {
 
+    // Let us consider the string “ABCDEF”. Let previously printed permutation be “DCFEBA”.
+    // The next permutation in sorted order should be “DEABCF”.
+    // Let us understand above steps to find next permutation.
+    // The ‘first character’ will be ‘C’. The ‘second character’ will be ‘E’. After swapping these two, we get “DEFCBA”.
+    // The final step is to sort the substring after the character original index of ‘first character’.
+    // Finally, we get “DEABCF”.
+
     // For example, given the sequence [1, 2, 3, 4] (which is in increasing order):
     // Index l = 3, because 4 is the only value in the sequence that is greater than 3 in order to satisfy the condition a[k] < a[l].
     // Index k = 2, because 3 is placed at an index that satisfies condition of being the largest index that is still less than a[k + 1] which is 4.
@@ -23,46 +30,46 @@ export class Permutation {
     // Because only one value lies after this index (the 3), the sequence remains unchanged in this instance.
     // Thus the lexicographic successor of the initial state is permuted: [1,2,4,3].
     
-    public static getNthPermutation(pos: number, arr: string[]): string[] {
-        // Sort the array and use the first object
-        let nthPermutation = arr.sort();
-        
-        for (let i = 1; i <= pos; i++) {
-            // Find the largest index k such that a[k] < a[k + 1]
-            // If no such index exists, the permutation is the last permutation.
-            let k = -1;
-            for (let x = 0; x < arr.length - 1; x++) {
-                if (nthPermutation[x] < nthPermutation[x + 1]) {
-                    k = x;
-                }
-            }
-            
-            // Find the largest index l greater than k such that a[k] < a[l].
-            let l = -1;
-            for (let y = k + 1; y <= arr.length; y++) {
-                if (nthPermutation[k] < nthPermutation[y]) {
-                    l = y;
-                }
-            }
+    public static getNthPermutation<T>(pos: number, arr: T[]): T[] {
+        // Since we're looking for the nth permutation, get the next permutation n times
+        let nthPermutation = arr;
 
-        // Swap the value of a[k] with that of a[l].
-        this.swap(nthPermutation, k, l);
-
-        // Reverse the sequence from a[k + 1] up to and including the final element a[n].
-        let end = nthPermutation.splice(k + 1).reverse();
-        nthPermutation = nthPermutation.concat(end);
-    }
+        for (let i = 1; i < pos; i++) {
+            nthPermutation = this.nextPermutation(nthPermutation);
+        }
 
         return nthPermutation;
     }
 
-    // Let us consider the string “ABCDEF”. Let previously printed permutation be “DCFEBA”.
-    // The next permutation in sorted order should be “DEABCF”.
-    // Let us understand above steps to find next permutation.
-    // The ‘first character’ will be ‘C’. The ‘second character’ will be ‘E’. After swapping these two, we get “DEFCBA”.
-    // The final step is to sort the substring after the character original index of ‘first character’.
-    // Finally, we get “DEABCF”.
-    public static swap(arr: string[], x: number, y: number): void {
+    public static nextPermutation<T>(arr: T[]): T[] {
+        // Find the largest index k such that a[k] < a[k + 1]
+        // If no such index exists, the permutation is the last permutation.
+        let k = -1;
+        for (let x = 0; x < arr.length - 1; x++) {
+            if (arr[x] < arr[x + 1]) {
+                k = x;
+            }
+        }
+        
+        // Find the largest index l greater than k such that a[k] < a[l].
+        let l = -1;
+        for (let y = k + 1; y < arr.length; y++) {
+            if (arr[k] < arr[y]) {
+                l = y;
+            }
+        }
+
+        // Swap the value of a[k] with that of a[l].
+        this.swap(arr, k, l);
+
+        // Reverse the sequence from a[k + 1] up to and including the final element a[n].
+        let end = arr.splice(k + 1).reverse();
+        arr = arr.concat(end);
+
+        return arr;
+    }
+
+    public static swap<T>(arr: T[], x: number, y: number): void {
         let temp = arr[x];
         arr[x] = arr[y];
         arr[y] = temp;
