@@ -23,10 +23,42 @@
  * 
  * What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
  */
+import * as BigInt from "big-integer";
 
-export class Fibonacci {
-    
-    public static getFibonacciIndex(numDigits: number): number {
-        return 0;
+export class FibonacciIndex {
+    private static memory: { [ num: number]: number } = {};
+
+    public static getIndex(numDigits: number): number {
+        let index = 1;
+
+        while (true) {
+            let fn = this.fastFibonacci(index);
+            let BIG = BigInt(fn);
+            if (BIG.toString().length === numDigits) {
+                break;
+            }
+            index++;
+        }
+
+        return index;
     }
+
+    private static fastFibonacci(n: number): number {
+            if (this.memory.hasOwnProperty(n)) {
+                return this.memory[n];
+            }
+
+            let result = 0;
+
+            if (n == 1 || n == 2) {
+                result = 1;
+            } else {
+                result = this.fastFibonacci(n - 1) + this.fastFibonacci(n - 2);
+            }
+
+            this.memory[n] = result;
+            
+            return result;
+    }
+
 }
