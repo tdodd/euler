@@ -13,7 +13,15 @@ describe("25 - 1000-digit Fibonacci number", () => {
         expect(FibonacciIndex.getIndex(3)).to.equal(12);
     });
     
-    it.only("First number that contains 1000 digits", () => {
+    it("First number that contains 4 digits", () => {
+        expect(FibonacciIndex.getIndex(4)).to.equal(17);
+    });
+    
+    it("First number that contains 5 digits", () => {
+        expect(FibonacciIndex.getIndex(5)).to.equal(21);
+    });
+    
+    it.skip("First number that contains 1000 digits", () => {
         expect(FibonacciIndex.getIndex(1000)).to.equal(4782);
     });
 
