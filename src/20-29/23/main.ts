@@ -20,13 +20,16 @@
 
 export class AbundantNumbers {
     private static MAX_NUMBER = 28124;
+    private static lookupTable: boolean[] = [false];
     
     public static getSum(): number {
         let sum = 0;
-        let abundantNums = this.getAbundantNumbers(AbundantNumbers.MAX_NUMBER);
+
+        this.buildLookupTable(AbundantNumbers.MAX_NUMBER);
 
         for (let i = 1; i < AbundantNumbers.MAX_NUMBER; i++) {
-            if (!this.canBeWrittenAsSum(abundantNums, i)) {
+            // Get numbers that can't be written as the sum of 2 abundant numbers
+            if (!this.canBeWrittenAsSum(i)) {
                 sum += i;
             }
         }
@@ -34,53 +37,49 @@ export class AbundantNumbers {
         return sum;
     }
 
+    /**
+     * Build a lookup table of abundant numbers below the specified limit
+     * @param {number} limit the upper limit for calculation
+     */
+    private static buildLookupTable(limit: number): void {
+        for (let i = 1; i < limit; i++) {
+            let properDivisors = this.getProperDivisors(i);
+            let divisorSum = properDivisors.reduce((prev, curr) => prev + curr);
+            let isAbundant = divisorSum > i;
+            this.lookupTable.push(isAbundant);
+        }
+    }
+
+    /**
+     * Get divisors for a number, exluding the number itself
+     * @param {number} n the number
+     */
     private static getProperDivisors(n: number): number[] {
         let divisors = [1];
 
-        for (let i = 2; i < n; i++) {
-            let remainder = n % i;
-            if (remainder === 0) {
-                divisors.push(i);
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i === 0) {
+                if (n / i === i) {
+                    divisors.push(i);
+                } else {
+                    divisors.push(i, n / i); 
+                }
             }
         }
 
         return divisors;
     }
 
-    private static getAbundantNumbers(limit: number): number[] {
-        let abundantNums: number[] = [];
-
-        for (let i = 1; i < limit; i++) {
-            let properDivisors = this.getProperDivisors(i);
-            let divisorSum = properDivisors.reduce((prev, curr) => prev + curr);
-            let isAbundant = divisorSum > i;
-            if (isAbundant) {
-                abundantNums.push(i);
-            }
-        }
-
-        return abundantNums;
-    }
-
-    private static canBeWrittenAsSum(arr: number[], n: number): boolean {
-        for (let i = 0; i < arr.length - 1; i++) {
-            for (let j = i + 1; j < arr.length - 1; j++) {
-
-                let n1 = arr[i];
-                let n2 = arr[j];
-                let s = n1 + n2;
-
-                if (s > n) {
-                    return false;
-                }
-
-                if (s === n) {
-                    return true;
-                }
-
-            }
-        }
-        return false;
+    /**
+     * Test to see if a given number can be written as the sum of abundant numbers
+     * @param {number} n the number to test
+     */
+    private static canBeWrittenAsSum(n: number): boolean {
+        for (let i = 0; i <= n; i++) {
+			if (this.lookupTable[i] && this.lookupTable[n - i])
+				return true;
+		}
+		return false;
     }
 
 }
