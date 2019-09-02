@@ -7,6 +7,4 @@ before_script:
   - echo "Setup complete. Running Travis build.."
 
 script:
-  - npm run lint
-  - npm run build
-  - npm run coverage
+  - npm run travis
