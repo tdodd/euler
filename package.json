@@ -7,9 +7,10 @@
   "scripts": {
     "build": "node node_modules/.bin/tsc",
     "watch": "node node_modules/.bin/tsc -w",
-    "test": "node node_modules/.bin/_mocha --timeout 5000 --forbid-only --colors src/**/test.js",
+    "test": "node node_modules/.bin/_mocha -t 5000 --forbid-only --colors 'src/**/test.js'",
     "lint": "node node_modules/.bin/tslint -c tslint.json 'src/**/*.ts'",
-    "coverage": "./scripts/coverage.sh"
+    "coverage": "node node_modules/.bin/nyc --temp-dir=coverage/temp npm test",
+    "travis": "npm run build && npm run lint && npm run coverage"
   },
   "author": "Thomas Dodd",
   "license": "ISC",

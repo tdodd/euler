@@ -22,12 +22,25 @@ export class NumberSpiral {
         let matrix = NumberSpiral.buildMatrix(n);
 
         // Once the matrix is built, calculate the sum of the diagonals
-        for (let row = 0; row < n; row++) {
-            for (let col = 0; col < n; col++) {
-                let d1 = matrix[row][col];
-                let d2 = matrix[(matrix.length - 1) - row][(matrix.length - 1) - col];
+        // Keep two pointers and move them towards each other
+        let startPtr = 0;
+        let endPtr = matrix.length - 1;
+        
+        for (let i = 0; i < n; i++) {
+            // Get the value at each pointer
+            let d1 = matrix[i][startPtr];
+            let d2 = matrix[i][endPtr];
+
+            // Don't double count the center cell of a matrix of odd length
+            if (startPtr === endPtr) {
+                sum += d1;
+            } else {
                 sum += d1 + d2;
             }
+            
+            // Move the pointers
+            startPtr++;
+            endPtr--;
         }
 
         return sum;
