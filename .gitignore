@@ -1,8 +1,5 @@
 # Node Dependencies
-/node_modules
-
-# Build files
-release
+node_modules
 
 # Compiled js files and sourcemaps
 src/**/*.js
@@ -11,5 +8,4 @@ src/**/*.js.map
 package-lock.json
 
 # Code coverage
-code_coverage
-
+coverage
