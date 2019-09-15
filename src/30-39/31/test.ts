@@ -17,5 +17,4 @@ describe("31: Coin sums", () => {
         expect(CoinSums.getCombinations(200)).to.equal(73682);
     });
     
-
 });

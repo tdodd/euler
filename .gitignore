@@ -5,7 +5,11 @@ node_modules
 src/**/*.js
 src/**/*.js.map
 
+# Package lock
 package-lock.json
+
+# Temp folder
+temp
 
 # Code coverage
 coverage
