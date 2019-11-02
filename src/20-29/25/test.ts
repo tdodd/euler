@@ -3,7 +3,7 @@ import { FibonacciIndex } from "./main";
 import { expect } from "chai";
 
 
-describe("25 - 1000-digit Fibonacci number", () => {
+describe("25: 1000-digit Fibonacci number", () => {
     
     it("First number that contains 2 digits", () => {
         expect(FibonacciIndex.getIndex(2)).to.equal(7);
