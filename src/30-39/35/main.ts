@@ -1,4 +1,4 @@
-import { EulerUtil } from "../../util";
+import { EulerUtil } from "../../util/util";
 
 /**
  * https://projecteuler.net/problem=35

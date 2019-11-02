@@ -13,3 +13,6 @@ temp
 
 # Code coverage
 coverage
+
+# Test files
+src/util/primes-to-100k.txt

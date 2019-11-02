@@ -7,4 +7,8 @@ before_script:
   - echo "Setup complete. Running Travis build.."
 
 script:
+  # Unzip the test files
+  - npm run test:prepare
+
+  # Build and test
   - npm run travis
