@@ -8,6 +8,7 @@
     "build": "node node_modules/.bin/tsc",
     "watch": "node node_modules/.bin/tsc -w",
     "test": "node node_modules/.bin/_mocha -t 5000 --forbid-only --colors 'src/**/test.js'",
+    "test:prepare": "unzip src/util/primes.zip -d src/util",
     "lint": "node node_modules/.bin/tslint -c tslint.json 'src/**/*.ts'",
     "coverage": "node node_modules/.bin/nyc --temp-dir=coverage/temp npm test",
     "travis": "npm run build && npm run lint && npm run coverage"
