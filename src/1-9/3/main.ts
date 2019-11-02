@@ -1,10 +1,10 @@
 /**
  * https://projecteuler.net/problem=3
  * 
- * The prime factors of 13195 are 5, 7, 13 and 29.
- * What is the largest prime factor of the number 600851475143?
+ * The prime factors of 13,195 are 5, 7, 13 and 29.
+ * What is the largest prime factor of the number 600,851,475,143?
  * 
- * Prime numbers: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73
+ * HINT: 0 and 1 are not prime numbers.
  */
 
 export class PrimeFactor {

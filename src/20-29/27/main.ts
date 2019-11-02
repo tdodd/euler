@@ -1,3 +1,5 @@
+import { EulerUtil } from "../../util/util";
+
 /**
  * https://projecteuler.net/problem=27
  * 
@@ -14,7 +16,6 @@
  */
 
 export class QuadraticPrimes {
-    private static cache: { [num: string]: boolean } = {};
 
     public static getProduct(limit: number): number {
         let currentMax = 0;
@@ -33,26 +34,6 @@ export class QuadraticPrimes {
         return product;
     }
 
-    // Test whether a number is prime or not
-    // Primes are only divisible by 1 and themselves
-    private static isPrime(n: number): boolean {
-        // Check the cache first
-        if (this.cache.hasOwnProperty(n)) {
-            return this.cache[n];
-        }
-
-        // If it's not in the cache, compute
-        for (let i = 2; i < Math.abs(n); i++) {
-            if (n % i === 0) {
-                Object.defineProperty(this.cache, n.toString(), { value: false, enumerable: true });
-                return false;
-            }
-        }
-
-        Object.defineProperty(this.cache, n.toString(), { value: true, enumerable: true });
-        return true;
-    }
-
     // Count the number of consecutive primes for a given formula
     private static countConsecutivePrimes(a: number, b: number): number {
         let n = 0;
@@ -60,7 +41,7 @@ export class QuadraticPrimes {
 
         while (!done) {
             let formula = Math.pow(n, 2) + (a * n) + b;
-            let isPrime = this.isPrime(formula);
+            let isPrime = EulerUtil.isPrime(formula);
             if (!isPrime) {
                 done = true;
             } else {

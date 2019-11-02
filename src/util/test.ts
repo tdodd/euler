@@ -12,7 +12,10 @@ describe("Euler Utils", () => {
         // Read the primes file
         let file = join(__dirname, "primes-to-100k.txt");
         let buffer = readFileSync(file);
-        let expectedPrimes: string[] = buffer.toString().split("\r\n");
+
+        // Store the primes as strings in an array. Trim the last line break
+        let expectedPrimes: string[] = buffer.toString().split("\r\n")
+        expectedPrimes = expectedPrimes.slice(0, expectedPrimes.length - 1);
 
         let actualPrimes: string[] = [];
 
@@ -22,8 +25,6 @@ describe("Euler Utils", () => {
                 actualPrimes.push(i.toString());
             }
         }
-
-        actualPrimes.push("");
 
         expect(expectedPrimes).to.deep.equal(actualPrimes);
     });

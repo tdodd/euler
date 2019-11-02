@@ -3,7 +3,7 @@ import { Permutation } from "./main";
 import { expect } from "chai";
 
 
-describe("24 - Lexicographic Permutations", () => {
+describe("24: Lexicographic Permutations", () => {
     
     it("Permutations of 1-3", () => {
         expect(Permutation.getNthPermutation(1, ["1", "2", "3"])).to.deep.equal(["1", "2", "3"]);
