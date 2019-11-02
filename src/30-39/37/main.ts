@@ -16,7 +16,7 @@ export class TruncatablePrimes {
     public static getSum(): number {
         let sum = 0;
         let count = 0;
-        
+
         // Since there are only 11 such primes, stop once we reach eleven
         for (let i = 10; count < 11; i++) {
             if (this.isTruncatablePrime(i)) {
@@ -31,20 +31,20 @@ export class TruncatablePrimes {
 
     private static isTruncatablePrime(n: number): boolean {
         // Test if left-truncatable
-		for (let i = 10; i <= n; i *= 10) {
-			if (!EulerUtil.isPrime(n % i)) {
-				return false;
+        for (let i = 10; i <= n; i *= 10) {
+            if (!EulerUtil.isPrime(n % i)) {
+                return false;
             }
-		}
-		
-		// Test if right-truncatable
-		for (; n != 0; n = Math.floor(n/10)) {
-			if (!EulerUtil.isPrime(n)) {
-				return false;
+        }
+
+        // Test if right-truncatable
+        for (; n != 0; n = Math.floor(n / 10)) {
+            if (!EulerUtil.isPrime(n)) {
+                return false;
             }
-		}
-		
-		return true;
+        }
+
+        return true;
     }
 
 }

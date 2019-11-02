@@ -4,7 +4,7 @@
 export class EulerUtil {
     // Maintain a cache of prime numbers for faster solving
     private static primeNumberCache: { [num: string]: boolean } = {};
-    
+
     /**
      * Test whether a number is prime or not
      * Primes are only divisible by 1 and themselves
@@ -13,7 +13,7 @@ export class EulerUtil {
         if (n < 2) {
             return false;
         }
-        
+
         else if (n == 2) {
             return true;
         }
@@ -43,6 +43,3 @@ export class EulerUtil {
     }
 
 }
-
-
-
